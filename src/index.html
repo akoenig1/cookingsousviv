@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>CookingSousViv</title>
+
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        
+        <!--Instagram Token-->
+        <script src='https://cookingsousviv.herokuapp.com/token.js'></script>
+
+        <!--Add Instafeed.js-->
+        <script type="text/javascript" src="./scripts/instafeed.min.js"></script>
+        
+        <!-- Link Bootstrap CSS -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+
+        <!-- Link Custom CSS -->
+        <link rel="stylesheet" href="./style.css">
+
+        <!-- jQuery library -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+        <!-- Latest compiled JavaScript -->
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    </head>
+    
+    <body>
+        <div id="root"></div>
+            <header>
+                <nav class="navbar navbar-inverse">
+                    <h1>Cooking Sous Viv</h1>
+                    <ul class="nav navbar-nav navbar-right">
+                        <li class="active"><a class="nav-link" href="#">Latest Creations</a></li>
+                        <li><a class="nav-link" href="#">About</a></li>
+                        <li><a class="nav-link" href="#">Recipes</a></li>
+                        <li><a class="nav-link" href="#">Contact</a></li>
+                        <li><a class="nav-link" href=""></a></li>
+                    </ul>
+                </nav>
+            </header>
+        <!--
+        <div id="banner">
+            <div class="row">
+                <div class="col-xs-12" id="masthead-container">
+                    <div class="masthead">
+                        <img src="./images/double-down.png" />
+                    </div>
+                </div>
+            </div>
+        </div>
+        -->
+
+        <div id="homepage">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xs-12">
+                        <div class="instagram-content">
+                            <h3>Latest Creations</h3>
+                            <div class="row photos-wrap">
+                                <div id="instafeed"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <script type="text/javascript">
+            var feed = new Instafeed({
+            accessToken: InstagramToken,
+            template:   '<div class="col-xs-12 col-sm-6 col-md-4 col-lg-3"> \
+                            <a href="{{link}}"> \
+                                <div class="photo-box"> \
+                                    <div class="image-wrap"> \
+                                        <img src="{{image}}"> \
+                                    </div> \
+                                    <div class="likes"><img src="./images/heart.png" /></div> \
+                                </div> \
+                            </a> \
+                        </div>'
+            });
+            feed.run();
+        </script>
+        
+        <footer>
+            <div class="row">
+                <div class="col-xs-12">
+                    <p>2020 by Alex Koenig</p>
+                </div>
+            </div>
+        </footer>
+
+        <!-- Load React. -->
+        <!-- Note: when deploying, replace "development.js" with "production.min.js". -->
+        <script src="https://unpkg.com/react@16/umd/react.development.js" crossorigin></script>
+        <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js" crossorigin></script>
+        <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+        <script type="module" src="./index.js"></script>
+    </body>
+</html>
