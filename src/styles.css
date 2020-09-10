@@ -140,6 +140,24 @@
     /*need to switch image to a filled in heart here*/
 }
 
+#load-more-photos {
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    border: solid 1px #222;
+    border-radius: 2px;
+    outline: none;
+    text-align: center;
+    justify-content: center;
+    background-color: #222;
+    color: #fff;
+    font-size: 18px;
+    margin-bottom: 80px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 20px;
+    padding-right: 20px;
+    box-shadow: 0 0.2rem rem rgba(0, 0, 0, 0.25);
+}
+
 footer {
     height: 50px;
     background-color: #222;

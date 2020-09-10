@@ -1,13 +1,12 @@
 import React from "react"
 import axios from "axios"
-import LoadButton from "./LoadButton"
 
 class Instafeed extends React.Component {
     state = {
         all_photos: [],
         displayed_photos: [],
         additional_photos: true,
-        num_photos_displayed: 30,
+        num_photos_displayed: 32,
     }
 
     constructor(props) {
@@ -17,6 +16,14 @@ class Instafeed extends React.Component {
 
         this.retrievePhotos = this.retrievePhotos.bind(this)
         this.handleShowMore = this.handleShowMore.bind(this)
+    }
+
+    componentWillMount(){
+        window.addEventListener('scroll', this.handleShowMore);
+    }
+    
+    componentWillUnmount(){
+        window.removeEventListener('scroll', this.handleShowMore);
     }
 
     retrievePhotos() {
@@ -30,7 +37,7 @@ class Instafeed extends React.Component {
             this.setState({ 
                 all_photos: res.data.data,
                 displayed_photos: Object.values(res.data.data).slice(0, this.state.num_photos_displayed),
-                num_photos_displayed: this.state.num_photos_displayed + 30 
+                num_photos_displayed: this.state.num_photos_displayed + 32 
             });
             this.checkForAdditionalPhotos()
         })
@@ -48,24 +55,34 @@ class Instafeed extends React.Component {
     }
 
     handleShowMore() {
-        this.setState({ 
-            displayed_photos: Object.values(this.state.all_photos).slice(0, this.state.num_photos_displayed),
-            num_photos_displayed: this.state.num_photos_displayed + 30 
-        })
-        this.checkForAdditionalPhotos()
+        if (window.innerHeight + document.documentElement.scrollTop + 1 >= document.scrollingElement.scrollHeight) {
+            this.setState({ 
+                displayed_photos: Object.values(this.state.all_photos).slice(0, this.state.num_photos_displayed),
+                num_photos_displayed: this.state.num_photos_displayed + 32 
+            })
+            this.checkForAdditionalPhotos()
+        }
     }
 
     render() {
-        console.log(this.state.num_photos_displayed)
         return(
             <div id="instafeed">
-                { this.state.displayed_photos.map((photo) => {
+                { this.state.displayed_photos.map((photo, index) => {
                     return(
-                        <div className="col-xs-12 col-sm-6 col-md-4 col-lg-3" key={photo.timestamp}>
+                        <div 
+                            className="col-xs-12 col-sm-6 col-md-4 col-lg-3" 
+                            key={photo.timestamp}
+                        >
                             <a href={photo.permalink}>
                                 <div className="photo-box">
                                     <div className="image-wrap">
-                                        <img src={photo.media_url} alt={photo.caption} />
+                                        <img 
+                                            src={photo.media_type === "VIDEO"
+                                                ? photo.thumbnail_url
+                                                : photo.media_url
+                                            } 
+                                            alt={photo.caption} 
+                                        />
                                     </div>
                                     <div className="likes"><img src={require('./images/heart.png')} alt="heart" /></div>
                                 </div>
@@ -73,10 +90,6 @@ class Instafeed extends React.Component {
                         </div>
                     )
                 })}
-                {this.state.additional_photos 
-                    ? <LoadButton handleShowMore = {this.handleShowMore} />
-                    : null
-                }
             </div>
         )
     }
