@@ -28,8 +28,8 @@ class Instafeed extends React.Component {
 
     retrievePhotos() {
         const fields = "id,caption,media_type,media_url,permalink,thumbnail_url,timestamp,username"
-        let user_id = "17841401439222266"
-        let token = 'IGQVJYaWFVX3ZASU1BScXB6d0t5RHBSS0ZAfdGFiekV1eGJ2cFp0NW5IYXJYZAmZAWRU5adV9qWnJzTHVJMjJGTEg1aHVQZA2hkWDViN1diSU81MnExTFJKajg2R0RLVHFMTTl2bGJlRS1pOE5ENDhzeHZA5bgZDZD'
+        let user_id = "17841425225910270"
+        let token = 'IGQVJXMTByZAG5zMGxIVU9qVDdEVmkyN080R2hDdUpma19Va0h2SXFlY3dzcXlMQTNRVUtVM0JKdXVKd3RBZAXVuUDVrN2hNQWc5OUk1bnI1T29RZAm53WlA3S0R1QnZA2YlA3akhfeTc1XzJlSmJCTlBoNwZDZD'
         let photo_limit = 1000
 
         axios.get(`https://graph.instagram.com/${user_id}/media?fields=${fields}&access_token=${token}&limit=${photo_limit}`)
