@@ -1,6 +1,6 @@
 import React from "react"
 import Photoboard from "./Photoboard"
-import styles from "./styles.css"
+import "./styles.css"
 
 function App() {
     return (

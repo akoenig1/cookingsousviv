@@ -1,5 +1,6 @@
 import React from "react"
 import axios from "axios"
+import 'dotenv/config'
 
 class Instafeed extends React.Component {
     state = {
@@ -8,17 +9,22 @@ class Instafeed extends React.Component {
         additional_photos: true,
         num_photos_displayed: 32,
     }
+    server_url = (process.env.NODE_ENV === 'development')
+        ? 'http://localhost:3000'
+        : 'https://cookingsousviv-backend.herokuapp.com/'
 
     constructor(props) {
         super(props)
 
-        this.retrievePhotos()
+        this.getPhotos()
 
-        this.retrievePhotos = this.retrievePhotos.bind(this)
+        this.getPhotos = this.getPhotos.bind(this)
         this.handleShowMore = this.handleShowMore.bind(this)
     }
 
-    componentWillMount(){
+    static number_of_new_photos_to_display = 32
+
+    componentDidMount(){
         window.addEventListener('scroll', this.handleShowMore);
     }
     
@@ -26,18 +32,13 @@ class Instafeed extends React.Component {
         window.removeEventListener('scroll', this.handleShowMore);
     }
 
-    retrievePhotos() {
-        const fields = "id,caption,media_type,media_url,permalink,thumbnail_url,timestamp,username"
-        let user_id = "17841425225910270"
-        let token = 'IGQVJXMTByZAG5zMGxIVU9qVDdEVmkyN080R2hDdUpma19Va0h2SXFlY3dzcXlMQTNRVUtVM0JKdXVKd3RBZAXVuUDVrN2hNQWc5OUk1bnI1T29RZAm53WlA3S0R1QnZA2YlA3akhfeTc1XzJlSmJCTlBoNwZDZD'
-        let photo_limit = 1000
-
-        axios.get(`https://graph.instagram.com/${user_id}/media?fields=${fields}&access_token=${token}&limit=${photo_limit}`)
+    getPhotos() {
+        axios.get(`${this.server_url}/instaPhotos`)
         .then(res => {
             this.setState({ 
-                all_photos: res.data.data,
-                displayed_photos: Object.values(res.data.data).slice(0, this.state.num_photos_displayed),
-                num_photos_displayed: this.state.num_photos_displayed + 32 
+                all_photos: res.data,
+                displayed_photos: Object.values(res.data).slice(0, this.state.num_photos_displayed),
+                num_photos_displayed: this.state.num_photos_displayed + Instafeed.number_of_new_photos_to_display 
             });
             this.checkForAdditionalPhotos()
         })
@@ -58,7 +59,7 @@ class Instafeed extends React.Component {
         if (window.innerHeight + document.documentElement.scrollTop + 1 >= document.scrollingElement.scrollHeight) {
             this.setState({ 
                 displayed_photos: Object.values(this.state.all_photos).slice(0, this.state.num_photos_displayed),
-                num_photos_displayed: this.state.num_photos_displayed + 32 
+                num_photos_displayed: this.state.num_photos_displayed + Instafeed.number_of_new_photos_to_display 
             })
             this.checkForAdditionalPhotos()
         }
