@@ -11,7 +11,7 @@ class Instafeed extends React.Component {
     }
     server_url = (process.env.NODE_ENV === 'development')
         ? 'http://localhost:3000'
-        : 'https://cookingsousviv-backend.herokuapp.com/'
+        : 'https://cookingsousviv-backend.herokuapp.com'
 
     constructor(props) {
         super(props)
