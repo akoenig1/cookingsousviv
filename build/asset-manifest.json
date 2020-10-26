@@ -1,0 +1,24 @@
+{
+  "files": {
+    "main.css": "/cookingsousviv/static/css/main.772a83a6.chunk.css",
+    "main.js": "/cookingsousviv/static/js/main.6d4ed681.chunk.js",
+    "main.js.map": "/cookingsousviv/static/js/main.6d4ed681.chunk.js.map",
+    "runtime-main.js": "/cookingsousviv/static/js/runtime-main.725803af.js",
+    "runtime-main.js.map": "/cookingsousviv/static/js/runtime-main.725803af.js.map",
+    "static/js/2.bf99cfbf.chunk.js": "/cookingsousviv/static/js/2.bf99cfbf.chunk.js",
+    "static/js/2.bf99cfbf.chunk.js.map": "/cookingsousviv/static/js/2.bf99cfbf.chunk.js.map",
+    "index.html": "/cookingsousviv/index.html",
+    "precache-manifest.40e0039d5bb26fd3e19f5b83cc908bf6.js": "/cookingsousviv/precache-manifest.40e0039d5bb26fd3e19f5b83cc908bf6.js",
+    "service-worker.js": "/cookingsousviv/service-worker.js",
+    "static/css/main.772a83a6.chunk.css.map": "/cookingsousviv/static/css/main.772a83a6.chunk.css.map",
+    "static/js/2.bf99cfbf.chunk.js.LICENSE.txt": "/cookingsousviv/static/js/2.bf99cfbf.chunk.js.LICENSE.txt",
+    "static/media/styles.css": "/cookingsousviv/static/media/banner.f1e6b9a0.png",
+    "static/media/heart.png": "/cookingsousviv/static/media/heart.5365673f.png"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.725803af.js",
+    "static/js/2.bf99cfbf.chunk.js",
+    "static/css/main.772a83a6.chunk.css",
+    "static/js/main.6d4ed681.chunk.js"
+  ]
+}
