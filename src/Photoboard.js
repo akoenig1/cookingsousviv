@@ -9,7 +9,7 @@ function Photoboard() {
                 <div className="row">
                     <div className="col-xs-12">
                         <div className="instagram-content">
-                            <h3>Latest Creations</h3>
+                            <h3>- recently in the kitchen -</h3>
                             <div className="row photos-wrap">
                                 <Instafeed />
                             </div>
