@@ -10,7 +10,7 @@ class Instafeed extends React.Component {
         num_photos_displayed: 32,
     }
     server_url = (process.env.NODE_ENV === 'development')
-        ? 'http://localhost:3000'
+        ? 'http://localhost:5000'
         : 'https://cookingsousviv-backend.herokuapp.com'
 
     constructor(props) {
@@ -85,7 +85,7 @@ class Instafeed extends React.Component {
                                             alt={photo.caption} 
                                         />
                                     </div>
-                                    <div className="likes"><img src={require('../images/heart.png')} alt="heart" /></div>
+                                    <div className="likes"><img src={require('../images/heart.png').default} alt="heart" /></div>
                                 </div>
                             </a>
                         </div>

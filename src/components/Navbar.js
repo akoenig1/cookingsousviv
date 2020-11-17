@@ -56,7 +56,7 @@ function Navbar() {
                     <div id="navbar-underline"></div>
                     <div id="social-bar">
                         <ul>
-                            <li><a className="social-link" href="https://www.instagram.com/cookingsousviv/" target="_blank"><i class="fab fa-instagram fa-lg"></i></a></li>
+                            <li><a className="social-link" href="https://www.instagram.com/cookingsousviv/" target="_blank" rel="noreferrer"><i className="fab fa-instagram fa-lg"></i></a></li>
                         </ul>
                     </div>
                 </ul>
