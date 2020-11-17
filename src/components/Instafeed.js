@@ -85,7 +85,7 @@ class Instafeed extends React.Component {
                                             alt={photo.caption} 
                                         />
                                     </div>
-                                    <div className="likes"><img src={require('./images/heart.png')} alt="heart" /></div>
+                                    <div className="likes"><img src={require('../images/heart.png')} alt="heart" /></div>
                                 </div>
                             </a>
                         </div>
