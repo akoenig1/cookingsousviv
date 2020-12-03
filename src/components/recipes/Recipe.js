@@ -26,7 +26,7 @@ function Recipe(props) {
     }, [recipe, props]) 
 
     return (
-        <div>
+        <div className='recipe-container'>
             <h3>{recipe.title}</h3>
             <p>{recipe.intro}</p>
             <p>{recipe.ingredients}</p>
