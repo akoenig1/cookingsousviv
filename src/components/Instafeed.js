@@ -35,9 +35,10 @@ class Instafeed extends React.Component {
     getPhotos() {
         axios.get(`${this.server_url}/instaPhotos`)
         .then(res => {
+            console.log(res.data.photos)
             this.setState({ 
-                all_photos: res.data,
-                displayed_photos: Object.values(res.data).slice(0, this.state.num_photos_displayed),
+                all_photos: res.data.photos,
+                displayed_photos: Object.values(res.data.photos).slice(0, this.state.num_photos_displayed),
                 num_photos_displayed: this.state.num_photos_displayed + Instafeed.number_of_new_photos_to_display 
             });
             this.checkForAdditionalPhotos()
