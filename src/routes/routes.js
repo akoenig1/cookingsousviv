@@ -4,7 +4,9 @@ import Home from "../pages/home"
 import About from "../pages/about"
 import Contact from "../pages/contact"
 import Favorites from "../pages/favorites"
-import Recipes from "../pages/recipes"
+import CreateRecipe from "../pages/recipes/create"
+import Recipes from "../pages/recipes/recipes"
+
 
 function Routes() {
     return(
@@ -13,6 +15,7 @@ function Routes() {
             <Route path="/about" component={About} />
             <Route path="/contact" component={Contact} />
             <Route path="/favorites" component={Favorites} />
+            <Route path="/recipes/create" component={CreateRecipe} />
             <Route path="/recipes" component={Recipes} />
         </Switch>
     )

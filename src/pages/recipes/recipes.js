@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react"
 import { Link, Route, Switch, matchPath, } from "react-router-dom"
 import axios from 'axios'
-import Recipe from '../components/recipes/Recipe'
-import '../styles/recipes/styles.css'
+import Recipe from '../../components/recipes/Recipe'
+import '../../styles/recipes/styles.css'
 import { arrowFunctionExpression } from "@babel/types"
 
 function getRecipeList(server_url) {

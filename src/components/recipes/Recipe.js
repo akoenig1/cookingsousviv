@@ -1,14 +1,13 @@
 import React, { useState, useEffect } from "react"
-//import { useRouteMatch } from "react-router-dom"
 
 function Recipe(props) {
-    //let match = useRouteMatch();
     const [recipe, setRecipe] = useState({
         title: '',
         intro: '',
         ingredients: '',
         directions: '',
         tags: '',
+        instaPhoto: {},
         fetched: false,
     });
 
@@ -20,6 +19,7 @@ function Recipe(props) {
                 ingredients: props.recipe[0].ingredients,
                 directions: props.recipe[0].directions,
                 tags: props.recipe[0].tags,
+                instaPhoto: props.recipe[0].instaPhoto,
                 fetched: true
             })
         } 
