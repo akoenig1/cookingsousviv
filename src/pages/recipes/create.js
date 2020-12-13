@@ -19,8 +19,6 @@ const CreateRecipe = () => {
             //instaPhoto: event.target.instaPhoto.value
         }
 
-        console.log(data)
-
         const server_url = (process.env.NODE_ENV === 'development')
         ? 'http://localhost:5000'
         : 'https://cookingsousviv-backend.herokuapp.com'

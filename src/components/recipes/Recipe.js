@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react"
+import Button from '@material-ui/core/Button'
 
 function Recipe(props) {
     const [recipe, setRecipe] = useState({
@@ -32,6 +33,13 @@ function Recipe(props) {
             <p>{recipe.ingredients}</p>
             <p>{recipe.directions}</p>
             <p>{recipe.tags}</p>
+
+            <Button variant='outlined' onClick={() => props.history.push({
+                pathname: `${props.history.location.pathname}/delete`, 
+                recipe: recipe
+            }) }> 
+                Delete 
+            </Button>
         </div>
     )
 }
