@@ -8,6 +8,7 @@ function Recipe(props) {
         ingredients: '',
         directions: '',
         tags: '',
+        id: '',
         instaPhoto: {},
         fetched: false,
     });
@@ -20,6 +21,7 @@ function Recipe(props) {
                 ingredients: props.recipe[0].ingredients,
                 directions: props.recipe[0].directions,
                 tags: props.recipe[0].tags,
+                id: props.recipe[0].id,
                 instaPhoto: props.recipe[0].instaPhoto,
                 fetched: true
             })
@@ -33,6 +35,13 @@ function Recipe(props) {
             <p>{recipe.ingredients}</p>
             <p>{recipe.directions}</p>
             <p>{recipe.tags}</p>
+
+            <Button variant='outlined' onClick={() => props.history.push({
+                pathname: `${props.history.location.pathname}/update`, 
+                recipe: recipe
+            }) }> 
+                Update 
+            </Button>
 
             <Button variant='outlined' onClick={() => props.history.push({
                 pathname: `${props.history.location.pathname}/delete`, 

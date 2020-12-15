@@ -1,7 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 
-import { useHistory, Redirect } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import Button from '@material-ui/core/Button'
 
 const DeleteRecipe = (props) => {
