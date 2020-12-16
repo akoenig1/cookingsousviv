@@ -1,6 +1,7 @@
 import React from "react"
 import { Route, Switch } from "react-router-dom"
 import Home from "../pages/home"
+import Login from "../pages/login"
 import About from "../pages/about"
 import Contact from "../pages/contact"
 import Favorites from "../pages/favorites"
@@ -10,10 +11,11 @@ import DeleteRecipe from "../pages/recipes/delete"
 import Recipes from "../pages/recipes/index"
 
 
-function Routes() {
+function Routes(props) {
     return(
         <Switch>
             <Route exact path="/" component={Home} />
+            <Route path="/login" handleLogin={props.handleLogin} render={props => <Login {...props} handleLogin={props.handleLogin} />} />
             <Route path="/about" component={About} />
             <Route path="/contact" component={Contact} />
             <Route path="/favorites" component={Favorites} />
