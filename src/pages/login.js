@@ -7,23 +7,23 @@ function Login(props) {
         <div>
             <h1>LOGIN</h1>
             <form onSubmit={props.handleLogin}>
-            <br />
-            <TextField
-            id='username'
-            label='Username'
-            margin="normal"
-            variant='outlined'
-            />
-            <br />
-            <TextField
-            id='password'
-            label='Password'
-            margin="normal"
-            variant='outlined'
-            type='password'
-            />
-            <br />
-            <Button variant='outlined' color='primary' type='submit'> Login </Button>
+                <br />
+                <TextField
+                id='username'
+                label='Username'
+                margin="normal"
+                variant='outlined'
+                />
+                <br />
+                <TextField
+                id='password'
+                label='Password'
+                margin="normal"
+                variant='outlined'
+                type='password'
+                />
+                <br />
+                <Button variant='outlined' color='primary' type='submit'> Login </Button>
             </form>
         </div>
     )

@@ -11,11 +11,16 @@ function App() {
         e.preventDefault()
         setUser(true)
     }
+
+    const handleLogout = e => {
+        e.preventDefault()
+        setUser(false)
+    }
     
     return (
         <div>
             <Navbar />
-            <Routes handleLogin={handleLogin} />
+            <Routes handleLogin={handleLogin} handleLogout={handleLogout} />
         </div>
     )
 }
