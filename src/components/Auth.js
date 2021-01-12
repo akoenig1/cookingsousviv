@@ -6,11 +6,14 @@ import Button from '@material-ui/core/Button'
 
 const Auth = () => {
     const auth = useContext(AuthContext);
+    const server_url = (process.env.NODE_ENV === 'development')
+    ? 'http://localhost:5000'
+    : 'https://cookingsousviv-backend.herokuapp.com'
 
     const authResponseSuccess = (res) => {
         Axios({
             method: "POST",
-            url: "http://localhost:5000/auth/google",
+            url: server_url,
             data: {tokenId: res.tokenId}
         }).then(res => {
             auth.login(res.data.user._id, res.data.token, res.data.user.admin)
