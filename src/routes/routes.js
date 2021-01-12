@@ -14,11 +14,11 @@ import Recipes from "../pages/recipes/index"
 import Unauthorized from "../components/Unauthorized"
 
 
-function Routes(props) {
+function Routes(props) {    
     return(
         <Switch>
             <Route exact path="/" component={Home} />
-            <Route path="/login" handleLogin={props.handleLogin} render={props => <Login {...props} handleLogin={props.handleLogin} />} />
+            <Route path="/login" render={(props) => (<Login {...props} handleLogin={props.handleLogin} /> )} />
             <Route path="/logout" handleLogout={props.handleLogout} render={props => <Logout {...props} handleLogout={props.handleLogout} />} />
             <Route path="/about" component={About} />
             <Route path="/contact" component={Contact} />

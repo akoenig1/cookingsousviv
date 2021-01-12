@@ -2,6 +2,7 @@ import React from "react"
 import Button from '@material-ui/core/Button'
 
 function Logout(props) {
+    console.log(props)
     return (
         <div>
             <h1>LOGOUT</h1>

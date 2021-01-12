@@ -1,26 +1,35 @@
-import React from 'react';
-import axios from 'axios';
-
+import React, { useContext } from 'react';
+import { useHttpClient } from '../../hooks/http-hook';
+import { AuthContext } from '../../context/auth-context';
 import { useHistory } from 'react-router-dom';
 import Button from '@material-ui/core/Button'
 
 const DeleteRecipe = (props) => {
     let history = useHistory();
+    const { sendRequest } = useHttpClient();
+    const auth = useContext(AuthContext);
+    const recipe = JSON.stringify(props.location.recipe);
+    const server_url = (process.env.NODE_ENV === 'development')
+    ? 'http://localhost:5000'
+    : 'https://cookingsousviv-backend.herokuapp.com'
 
     const handleSubmit = (event) => {
         event.preventDefault()
-        const recipe = props.location.recipe
 
-        const server_url = (process.env.NODE_ENV === 'development')
-        ? 'http://localhost:5000'
-        : 'https://cookingsousviv-backend.herokuapp.com'
-
-        axios.post(`${server_url}${props.location.pathname}`, recipe)
-            .then( (res) => {
-                alert(res.data)
-                history.push('/recipes')
-            })
-            .catch((err) => console.log(err))
+        sendRequest(
+            `${server_url}${props.location.pathname}`,
+            'POST',
+            {
+                Authorization: 'Bearer ' + auth.token,
+                'Content-Type': 'application/json'
+            },
+            recipe
+        ).then( async (res) => {
+            await alert(res)
+            history.push(`/recipes`)
+        }).catch((err) => {
+            console.log(err)
+        })
     }
 
     return(
@@ -29,7 +38,7 @@ const DeleteRecipe = (props) => {
                 <h2>Are you sure you want to delete {props.location.recipe.title} </h2>
                 <br />
                 <Button variant='outlined' color='primary' type='submit'> Yes </Button>
-                <Button variant='outlined' onClick={() => history.push('/recipes')}> No </Button>
+                <Button variant='outlined' onClick={() => history.push(`/recipes`)}> No </Button>
             </form>
         </div>
     )}

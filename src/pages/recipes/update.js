@@ -1,43 +1,54 @@
-import React from 'react';
-import axios from 'axios';
-
+import React, { useContext } from 'react';
+import { useHttpClient } from '../../hooks/http-hook';
+import { AuthContext } from '../../context/auth-context';
 import { useHistory } from 'react-router-dom';
 import TextField from '@material-ui/core/TextField'
 import Button from '@material-ui/core/Button'
 
 const UpdateRecipe = (props) => {
     let history = useHistory();
+    const { sendRequest } = useHttpClient();
+    const auth = useContext(AuthContext);
+    const server_url = (process.env.NODE_ENV === 'development')
+    ? 'http://localhost:5000'
+    : 'https://cookingsousviv-backend.herokuapp.com'
 
     const handleSubmit = (event) => {
         event.preventDefault()
-        const data = {
-            title: event.target.title.value,
-            intro: event.target.intro.value,
-            ingredients: event.target.ingredients.value,
-            directions: event.target.directions.value,
-            tags: event.target.tags.value,
-            id: props.location.recipe.id,
-            //instaPhoto: event.target.instaPhoto.value
-        }
+        const formData = JSON.stringify({
+          title: event.target.title.value,
+          intro: event.target.intro.value,
+          ingredients: event.target.ingredients.value,
+          directions: event.target.directions.value,
+          tags: event.target.tags.value,
+          id: props.location.recipe.id,
+          //instaPhoto: event.target.instaPhoto.value
+        })
 
-        const server_url = (process.env.NODE_ENV === 'development')
-        ? 'http://localhost:5000'
-        : 'https://cookingsousviv-backend.herokuapp.com'
-
-        axios.post(`${server_url}${props.location.pathname}`, data)
-            .then( async (res) =>  {await console.log(res); history.replace(`${res.data}`); } )
-            .catch((err) => console.log(err))
+        sendRequest(
+          `${server_url}${props.location.pathname}`,
+          'POST',
+          {
+            Authorization: 'Bearer ' + auth.token,
+            'Content-Type': 'application/json'
+          },
+          formData,
+        ).then( async (res) => {
+          await history.replace(`${res.url}`)
+        }).catch((err) => {
+          console.log(err)
+        })
     }
   
-    const populateInstaPhotos = () => {
-        const server_url = (process.env.NODE_ENV === 'development')
-        ? 'http://localhost:5000'
-        : 'https://cookingsousviv-backend.herokuapp.com'
+    // const populateInstaPhotos = () => {
+    //     const server_url = (process.env.NODE_ENV === 'development')
+    //     ? 'http://localhost:5000'
+    //     : 'https://cookingsousviv-backend.herokuapp.com'
 
-        return axios.get(`${server_url}/recipes/update`)
-                    .then(response => console.log(response))
-                    .catch((err) => console.log(err))
-    }
+    //     return axios.get(`${server_url}/recipes/update`)
+    //                 .then(response => console.log(response))
+    //                 .catch((err) => console.log(err))
+    // }
   
       return(
         <div>
@@ -47,7 +58,7 @@ const UpdateRecipe = (props) => {
               label='Title'
               margin='normal'
               variant='outlined'
-              fullWidth='true'
+              fullWidth={true}
               defaultValue={props.location.recipe.title}
               />
             <br />
@@ -58,7 +69,7 @@ const UpdateRecipe = (props) => {
               rows={20}
               margin="normal"
               variant='outlined'
-              fullWidth='true'
+              fullWidth={true}
               defaultValue={props.location.recipe.intro}
               />
              <br />
@@ -69,7 +80,7 @@ const UpdateRecipe = (props) => {
               rows={20}
               margin="normal"
               variant='outlined'
-              fullWidth='true'
+              fullWidth={true}
               defaultValue={props.location.recipe.ingredients}
               />
              <br />
@@ -80,7 +91,7 @@ const UpdateRecipe = (props) => {
               rows={40}
               margin="normal"
               variant='outlined'
-              fullWidth='true'
+              fullWidth={true}
               defaultValue={props.location.recipe.directions}
               />
              <br />
@@ -91,7 +102,7 @@ const UpdateRecipe = (props) => {
               rows={6}
               margin="normal"
               variant='outlined'
-              fullWidth='true'
+              fullWidth={true}
               defaultValue={props.location.recipe.tags}
               />
              <br />

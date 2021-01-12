@@ -1,7 +1,11 @@
-import React, { useState, useEffect } from "react"
+import React, { useState, useEffect, useContext } from 'react'
 import Button from '@material-ui/core/Button'
+import { AuthContext } from '../../context/auth-context'
+//import Grid from '@material-ui/core/Grid'
 
 function Recipe(props) {
+    const auth = useContext(AuthContext);
+    
     const [recipe, setRecipe] = useState({
         title: '',
         intro: '',
@@ -36,19 +40,23 @@ function Recipe(props) {
             <p>{recipe.directions}</p>
             <p>{recipe.tags}</p>
 
-            <Button variant='outlined' onClick={() => props.history.push({
-                pathname: `${props.history.location.pathname}/update`, 
-                recipe: recipe
-            }) }> 
-                Update 
-            </Button>
+            {auth.isAdmin && <div>
+                <Button variant='outlined' onClick={() => props.history.push({
+                    pathname: `${props.history.location.pathname}/update`, 
+                    recipe: recipe
+                }) }> 
+                    Update 
+                </Button>
 
-            <Button variant='outlined' onClick={() => props.history.push({
-                pathname: `${props.history.location.pathname}/delete`, 
-                recipe: recipe
-            }) }> 
-                Delete 
-            </Button>
+                <Button variant='outlined' onClick={() => props.history.push({
+                    pathname: `${props.history.location.pathname}/delete`, 
+                    recipe: recipe
+                }) }> 
+                    Delete 
+                </Button>
+            </div>}
+
+                
         </div>
     )
 }

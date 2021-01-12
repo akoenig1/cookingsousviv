@@ -1,3 +1,11 @@
+a {
+    color: rgb(117, 116, 116);
+}
+
+a:hover {
+    color: black;
+}
+
 h1 {
     display: flex;
     justify-content: center;
@@ -5,4 +13,62 @@ h1 {
 
 .recipe-container {
     text-align: center;
+} 
+
+.recipe-list {
+    width: 50%;
+    margin: 30px auto;
+}
+
+.recipe-image-container {
+    margin-right: 20px;
+    margin-left: 10px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    max-width: 100%;
+    width: 25%;
+    display: inline-block;
+    position: relative;
+}
+
+.recipe-image-dummy {
+    margin-top: 100%;
+}
+
+.recipe-image {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: black;
+}
+
+.list-group-item {
+    display: flex;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.recipe-title {
+    color: rgb(117, 116, 116);
+    margin-right: 10px;
+    margin-left: 10px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    font-size: 26px;
+    font-weight: bold;
+    text-decoration: underline;
+    display: block;
+}
+
+.recipe-intro {
+    color: rgb(117, 116, 116);
+    margin-right: 10px;
+    margin-left: 10px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    display: block;
+    text-decoration: none;
+    font-size: 18px;
 }

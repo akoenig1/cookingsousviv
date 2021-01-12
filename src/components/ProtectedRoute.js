@@ -1,11 +1,14 @@
-import React, { Component } from "react";
+import React, { Component, useContext } from "react"; // eslint-disable-line no-unused-vars
 import { Route, Redirect } from "react-router-dom"
+import { AuthContext } from "../context/auth-context"
 
-const ProtectedRoute = ({ component: Component, user, ...rest }) => {
+const ProtectedRoute = ({ component: Component, ...rest }) => {
+    const auth = useContext(AuthContext);
+
     return(
         <Route {...rest} render={
             props => {
-                if (user) {
+                if (auth.isAdmin) {
                     return <Component {...rest} {...props} />
                 } else {
                     return <Redirect to={
