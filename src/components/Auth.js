@@ -10,10 +10,12 @@ const Auth = () => {
     ? 'http://localhost:5000'
     : 'https://cookingsousviv-backend.herokuapp.com'
 
+
+
     const authResponseSuccess = (res) => {
         Axios({
             method: "POST",
-            url: server_url,
+            url: `${server_url}/auth/google`,
             data: {tokenId: res.tokenId}
         }).then(res => {
             auth.login(res.data.user._id, res.data.token, res.data.user.admin)
