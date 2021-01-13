@@ -1,10 +1,11 @@
 import React from "react"
+import ComingSoon from "../components/UIElements/ComingSoon"
 
 function Favorites() {
     return(
         <div>
             <h1>FAVORITES</h1>
-            <p>Hang in there...coming soon!</p>
+            <ComingSoon></ComingSoon>
         </div>
     )
 }

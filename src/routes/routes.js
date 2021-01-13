@@ -13,7 +13,6 @@ import DeleteRecipe from "../pages/recipes/delete"
 import Recipes from "../pages/recipes/index"
 import Unauthorized from "../components/Unauthorized"
 
-
 function Routes(props) {    
     return(
         <Switch>

@@ -47,7 +47,7 @@ function App() {
     }, [login])
 
     return (
-        <div>
+        <div className="app">
             <AuthContext.Provider
                 value={{
                     isLoggedIn: !!token,

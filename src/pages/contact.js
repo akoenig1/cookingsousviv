@@ -1,10 +1,11 @@
 import React from "react"
+import ComingSoon from "../components/UIElements/ComingSoon"
 
 function Contact() {
     return(
         <div>
             <h1>CONTACT</h1>
-            <p>Hang in there...coming soon!</p>
+            <ComingSoon></ComingSoon>
         </div>
     )
 }

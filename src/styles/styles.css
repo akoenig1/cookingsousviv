@@ -1,3 +1,7 @@
+.app {
+    font-size: 1em;
+}
+
 @font-face {
     font-family: nanum_pen_script;
     src: url(./fonts/NanumPenScript-Regular.ttf);
@@ -100,6 +104,18 @@
 #homepage {
     background-color: #fff;
     margin: 0;
+}
+
+h2 {
+    font-size: 100%
+}
+
+#welcome-message {
+    font-size: 1.8em;
+}
+
+#coming-soon {
+    font-size: 1.8em;
 }
 
 .instagram-content {
