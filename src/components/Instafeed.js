@@ -71,13 +71,14 @@ class Instafeed extends React.Component {
                 { this.state.displayed_photos.map((photo, index) => {
                     return(
                         <div 
-                            className="col-xs-12 col-sm-6 col-md-4 col-lg-3" 
+                            className="col-xs-12 col-sm-6 col-md-4" 
                             key={photo.timestamp}
                         >
                             <a href={photo.permalink}>
-                                <div className="photo-box">
-                                    <div className="image-wrap">
+                                {/* <div className="photo-box"> */}
+                                    <div className="image-container">
                                         <img 
+                                            className="img-fluid"
                                             src={photo.media_type === "VIDEO"
                                                 ? photo.thumbnail_url
                                                 : photo.media_url
@@ -85,8 +86,8 @@ class Instafeed extends React.Component {
                                             alt={photo.caption} 
                                         />
                                     </div>
-                                    <div className="likes"><img src={require('../images/heart.png').default} alt="heart" /></div>
-                                </div>
+                                    {/* <div className="likes"><img src={require('../images/heart.png').default} alt="heart" /></div> */}
+                                {/* </div> */}
                             </a>
                         </div>
                     )

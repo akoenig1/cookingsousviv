@@ -33,12 +33,23 @@ function Recipe(props) {
     }, [recipe, props]) 
 
     return (
-        <div className='recipe-container'>
-            <h3>{recipe.title}</h3>
-            <p>{recipe.intro}</p>
-            <p>{recipe.ingredients}</p>
-            <p>{recipe.directions}</p>
-            <p>{recipe.tags}</p>
+        <div className='recipe-card'>
+            <div className='recipe-card-top row'>
+                <div className='recipe-card-header col-lg-6'>
+                    <h3 className='recipe-card-title'>{recipe.title}</h3>
+                    <p className='recipe-card-intro'>{recipe.intro}</p>
+                </div>
+                <div className='recipe-card-image-container col-lg-6'>
+
+                </div>
+            </div>
+            <div className='recipe-card-middle row'>
+                <p className='recipe-card-ingredients col-lg-4'>{recipe.ingredients}</p>
+                <p className='recipe-card-directions col-lg-8'>{recipe.directions}</p>
+            </div>
+            <div className='recipe-card-bottom row'>
+                <p className='recipe-card-tags'>{recipe.tags}</p>
+            </div>
 
             {auth.isAdmin && <div>
                 <Button variant='outlined' onClick={() => props.history.push({
