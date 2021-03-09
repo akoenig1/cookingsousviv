@@ -7,8 +7,8 @@ body {
 }
 
 @font-face {
-    font-family: nanum_pen_script;
-    src: url(./fonts/NanumPenScript-Regular.ttf);
+    font-family: Montserrat;
+    src: url(./fonts/Montserrat-Regular.ttf);
 }
 
 .navbar {
@@ -22,7 +22,7 @@ body {
 
 .navbar h1 {
     color: #222;
-    font-family: "Helvetica-Neue", Helvetica, Arial, sans-serif;
+    font-family: "Montserrat", sans-serif;
     font-size: 64px;
     display: inline-block;
     margin-top: 0;
@@ -39,7 +39,7 @@ body {
 }
 
 .navbar li {
-    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-family: "Montserrat", sans-serif;
     font-size: 20px;
     text-transform: uppercase;
 }
@@ -149,6 +149,14 @@ h2 {
     object-fit: cover;
 }
 
+.form-img {
+    cursor: pointer;
+}
+
+.active {
+    outline: 8px solid cadetblue;
+}
+
 footer {
     height: 50px;
     background-color: #222;
@@ -158,7 +166,7 @@ footer {
 }
 
 footer p {
-    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-family: "Montserrat", sans-serif;
     text-transform: uppercase;
     margin-top: 15px;
 }

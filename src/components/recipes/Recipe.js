@@ -29,7 +29,8 @@ function Recipe(props) {
                 instaPhoto: props.recipe[0].instaPhoto,
                 fetched: true
             })
-        } 
+        }
+        console.log(recipe.instaPhoto)
     }, [recipe, props]) 
 
     return (
@@ -40,7 +41,7 @@ function Recipe(props) {
                     <p className='recipe-card-intro'>{recipe.intro}</p>
                 </div>
                 <div className='recipe-card-image-container col-lg-6'>
-
+                    <img src={recipe.instaPhoto.media_url} alt="food" className="recipe-card-image"></img>
                 </div>
             </div>
             <div className='recipe-card-middle row'>

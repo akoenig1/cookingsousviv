@@ -8,6 +8,7 @@ class Instafeed extends React.Component {
         displayed_photos: [],
         additional_photos: true,
         num_photos_displayed: 32,
+        is_loading: true
     }
     server_url = (process.env.NODE_ENV === 'development')
         ? 'http://localhost:5000'
@@ -38,7 +39,8 @@ class Instafeed extends React.Component {
             this.setState({ 
                 all_photos: res.data.photos,
                 displayed_photos: Object.values(res.data.photos).slice(0, this.state.num_photos_displayed),
-                num_photos_displayed: this.state.num_photos_displayed + Instafeed.number_of_new_photos_to_display 
+                num_photos_displayed: this.state.num_photos_displayed + Instafeed.number_of_new_photos_to_display,
+                is_loading: false
             });
             this.checkForAdditionalPhotos()
         })
@@ -66,6 +68,13 @@ class Instafeed extends React.Component {
     }
 
     render() {
+        if(this.state.is_loading) {
+            return(
+                <div>
+                    <h3>Loading...</h3>
+                </div>
+            )
+        }
         return(
             <div id="instafeed">
                 { this.state.displayed_photos.map((photo, index) => {
@@ -75,19 +84,16 @@ class Instafeed extends React.Component {
                             key={photo.timestamp}
                         >
                             <a href={photo.permalink}>
-                                {/* <div className="photo-box"> */}
-                                    <div className="image-container">
-                                        <img 
-                                            className="img-fluid"
-                                            src={photo.media_type === "VIDEO"
-                                                ? photo.thumbnail_url
-                                                : photo.media_url
-                                            } 
-                                            alt={photo.caption} 
-                                        />
-                                    </div>
-                                    {/* <div className="likes"><img src={require('../images/heart.png').default} alt="heart" /></div> */}
-                                {/* </div> */}
+                                <div className="image-container">
+                                    <img 
+                                        className="img-fluid"
+                                        src={photo.media_type === "VIDEO"
+                                            ? photo.thumbnail_url
+                                            : photo.media_url
+                                        } 
+                                        alt={photo.caption} 
+                                    />
+                                </div>
                             </a>
                         </div>
                     )

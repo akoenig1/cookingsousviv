@@ -1,26 +1,60 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { useHttpClient } from '../../hooks/http-hook';
 import { AuthContext } from '../../context/auth-context';
-import TextField from '@material-ui/core/TextField';
+import SelectPhoto from '../../components/recipes/SelectPhoto';
+import WriteRecipe from '../../components/recipes/WriteRecipe';
 import Button from '@material-ui/core/Button';
+
+const useFormProgress = () => {
+  const [currentStep, setCurrentStep] = useState(0);
+
+  const goForward = () => {
+    setCurrentStep(currentStep + 1);
+  }
+
+  const goBack = () => {
+    setCurrentStep(currentStep - 1);
+  }
+
+  return [currentStep, goForward, goBack];
+}
 
 const CreateRecipe = () => {
   const history = useHistory();
   const { sendRequest } = useHttpClient();
+  const [currentStep, goForward, goBack] = useFormProgress();
+  const [state, setState] = useState({
+    title: "",
+    intro: "",
+    ingredients: "",
+    directions: "",
+    tags: "",
+    photo: null
+  })
   const auth = useContext(AuthContext);
   const server_url = (process.env.NODE_ENV === 'development')
     ? 'http://localhost:5000'
     : 'https://cookingsousviv-backend.herokuapp.com'
 
+
+  const handleChange = (event) => {
+    const value = event.target.value;
+    setState({
+      ...state,
+      [event.target.id]: value
+    });
+  }
+
   const handleSubmit = (event) => {
     event.preventDefault()
     const formData = JSON.stringify({
-      title: event.target.title.value,
-      intro: event.target.intro.value,
-      ingredients: event.target.ingredients.value,
-      directions: event.target.directions.value,
-      tags: event.target.tags.value,
+      title: state.title,
+      intro: state.intro,
+      ingredients: state.ingredients,
+      directions: state.directions,
+      tags: state.tags,
+      photo: state.photo
     })
 
     sendRequest(
@@ -37,75 +71,39 @@ const CreateRecipe = () => {
       console.log(err)
     })
   }
-  
-  // const populateInstaPhotos = async () => {
-  //   try {
-  //     await sendRequest(
-  //       `${server_url}/recipes/create`,
-  //       'GET',
-  //       null,
-  //       {
-  //         Authorization: 'Bearer ' + auth.token
-  //       }
-  //     );
-  //   } catch (err) {}  
-  // }
-  
+
+  const steps = [
+    <SelectPhoto state={state} setState={setState} useFormProgress={useFormProgress}/>, 
+    <WriteRecipe state={state} handleChange={handleChange}/>
+  ];
+  const isFirst = currentStep === 0;
+  const isLast = currentStep === steps.length - 1;
+
   return(
     <div>
       <form onSubmit={handleSubmit}>
-        <TextField
-          id='title'
-          label='Title'
-          margin='normal'
-          variant='outlined'
-          fullWidth={true}
-          />
-        <br />
-        <TextField
-          id='intro'
-          label='Intro'
-          multiline
-          rows={20}
-          margin="normal"
-          variant='outlined'
-          fullWidth={true}
-          />
-          <br />
-          <TextField
-          id='ingredients'
-          label='Ingredients'
-          multiline
-          rows={20}
-          margin="normal"
-          variant='outlined'
-          fullWidth={true}
-          />
-          <br />
-          <TextField
-          id='directions'
-          label='Directions'
-          multiline
-          rows={40}
-          margin="normal"
-          variant='outlined'
-          fullWidth={true}
-          />
-          <br />
-          <TextField
-          id='tags'
-          label='Tags'
-          multiline
-          rows={6}
-          margin="normal"
-          variant='outlined'
-          fullWidth={true}
-          />
-          <br />
-          <Button variant='outlined' color='primary' type='submit'> Create Post </Button>
-          </form>
+        {steps[currentStep]}
+      </form>
       <br />
       <Button variant='outlined' onClick={() => history.replace('/recipes')}> Cancel </Button>
+      {!isFirst && 
+        <Button 
+          onClick={() => goBack()}
+        >
+          Go Back
+        </Button>
+      }
+      <Button 
+        variant='outlined' 
+        color='primary' 
+        type='submit'
+        onClick={(e) => {
+          e.preventDefault();
+          isLast ? handleSubmit(e) : goForward();
+        }}
+      > 
+        {isLast ? "Create Post" : "Next"} 
+      </Button>
     </div>
   )
 }  

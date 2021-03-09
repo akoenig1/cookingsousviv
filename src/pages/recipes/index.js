@@ -49,11 +49,11 @@ function Recipes({history}) {
 
             <ul className="list-group recipe-list">
                  { history.location.pathname === '/recipes' ?
-                    recipes.map(({ title, intro, url }) =>
+                    recipes.map(({ title, intro, url, instaPhoto }) =>
                         <li key={url} className="list-group-item">
                             <div className="recipe-image-container">
-                                <div className="recipe-image-dummy"></div>
-                                <div className="recipe-image"></div>
+                                {/* <div className="recipe-image-dummy"></div> */}
+                                <img src={instaPhoto.media_url} alt="food" className="recipe-image"></img>
                             </div>
                             <div className="recipe-text-container">
                                 <Link to={`${url}`} className="align-top recipe-title row">
