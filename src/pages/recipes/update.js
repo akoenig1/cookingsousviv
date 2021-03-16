@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { useHttpClient } from '../../hooks/http-hook';
+import { useHttpClient } from '../../hooks/useHttpClient';
 import { AuthContext } from '../../context/auth-context';
 import { useHistory } from 'react-router-dom';
 import TextField from '@material-ui/core/TextField'

@@ -1,6 +1,6 @@
 import React, { useContext, useState } from 'react';
 import { useHistory } from 'react-router-dom';
-import { useHttpClient } from '../../hooks/http-hook';
+import { useHttpClient } from '../../hooks/useHttpClient';
 import { AuthContext } from '../../context/auth-context';
 import SelectPhoto from '../../components/recipes/SelectPhoto';
 import WriteRecipe from '../../components/recipes/WriteRecipe';
