@@ -30,12 +30,12 @@ const CreateRecipe = () => {
     ingredients: "",
     directions: "",
     tags: "",
-    photo: null
-  })
+    photo: null,
+  });
   const auth = useContext(AuthContext);
   const server_url = (process.env.NODE_ENV === 'development')
     ? 'http://localhost:5000'
-    : 'https://cookingsousviv-backend.herokuapp.com'
+    : 'https://cookingsousviv-backend.herokuapp.com';
 
 
   const handleChange = (event) => {
@@ -47,7 +47,7 @@ const CreateRecipe = () => {
   }
 
   const handleSubmit = (event) => {
-    event.preventDefault()
+    event.preventDefault();
     const formData = JSON.stringify({
       title: state.title,
       intro: state.intro,
@@ -55,7 +55,7 @@ const CreateRecipe = () => {
       directions: state.directions,
       tags: state.tags,
       photo: state.photo
-    })
+    });
 
     sendRequest(
       `${server_url}/recipes/create`,
@@ -105,7 +105,7 @@ const CreateRecipe = () => {
         {isLast ? "Create Post" : "Next"} 
       </Button>
     </div>
-  )
+  );
 }  
 
 export default CreateRecipe;

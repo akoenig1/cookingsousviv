@@ -2,8 +2,6 @@ import React from 'react';
 import { Route, Switch } from 'react-router-dom';
 import ProtectedRoute from './components/ProtectedRoute';
 import Home from './pages/home';
-import Login from './pages/login';
-import Logout from './pages/logout';
 import About from './pages/about';
 import Contact from './pages/contact';
 import Favorites from './pages/favorites';
@@ -17,8 +15,6 @@ function Routes(props) {
   return(
     <Switch>
       <Route exact path="/" component={Home} />
-      <Route path="/login" render={(props) => (<Login {...props} handleLogin={props.handleLogin} /> )} />
-      <Route path="/logout" handleLogout={props.handleLogout} render={props => <Logout {...props} handleLogout={props.handleLogout} />} />
       <Route path="/about" component={About} />
       <Route path="/contact" component={Contact} />
       <Route path="/favorites" component={Favorites} />
