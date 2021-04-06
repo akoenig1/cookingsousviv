@@ -27,6 +27,7 @@ function Recipe(props) {
   });
 
   const comment = useInput('');
+  const guestAuthor = useInput('');
   const id = props.recipe[0].id;
 
   function getRecipe(server_url) {
@@ -40,9 +41,12 @@ function Recipe(props) {
 
   function handleCommentSubmit(event) {
     event.preventDefault();
+    const registeredUser = auth.isLoggedIn;
+    const userInfo = auth.isLoggedIn ? auth.userId : guestAuthor.value;
     const formData = JSON.stringify({
       comment: comment.value,
-      user: auth.userId,
+      registeredUser: registeredUser,
+      userInfo: userInfo,
     });
 
     sendRequest(
@@ -58,6 +62,7 @@ function Recipe(props) {
       console.log(err)
     })
 
+    guestAuthor.value = '';
     comment.value = '';
   }
 
@@ -111,8 +116,16 @@ function Recipe(props) {
           </li>
         ))}
       </div>
-      {auth.isLoggedIn && <div>
+      <div>
         <form>
+          {!auth.isLoggedIn && 
+          <input
+            name='guestAuthor'
+            placeholder='Enter your name...'
+            value={guestAuthor.value}
+            onChange={guestAuthor.onChange}
+          />
+          }
           <textarea
             name='content'
             rows='5'
@@ -122,7 +135,7 @@ function Recipe(props) {
           />
           <button onClick={handleCommentSubmit}></button>
         </form>
-      </div>}
+      </div>
 
       {auth.isAdmin && <div>
         <Button variant='outlined' onClick={() => props.history.push({
