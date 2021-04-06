@@ -81,20 +81,6 @@ function Recipe(props) {
   })
   }, [recipe, props]) 
 
-  //   if (props.recipe[0] && !recipe.fetched) {
-  //     setRecipe({...recipe,
-  //       title: props.recipe[0].title,
-  //       intro: props.recipe[0].intro,
-  //       ingredients: props.recipe[0].ingredients,
-  //       directions: props.recipe[0].directions,
-  //       tags: props.recipe[0].tags,
-  //       id: props.recipe[0].id,
-  //       instaPhoto: props.recipe[0].instaPhoto,
-  //       fetched: true
-  //     })
-  //   }
-  // }, [recipe, props]) 
-
   return (
     <div className='recipe-card'>
       <div className='recipe-card-top row'>
@@ -115,7 +101,14 @@ function Recipe(props) {
       </div>
       <div className='comments-container'>
         {recipe.comments.map((comment) => (
-          <li key={comment._id}>{comment.comment}</li>
+          <li 
+            key={comment._id}
+          >
+            <span>
+              {comment.userAuthor ? comment.userAuthor.name : comment.guestAuthor}
+            </span>
+            {comment.comment}
+          </li>
         ))}
       </div>
       {auth.isLoggedIn && <div>
