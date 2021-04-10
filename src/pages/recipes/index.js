@@ -2,7 +2,7 @@ import React, { useState, useEffect, useContext } from 'react';
 import { Link, Route, Switch, matchPath, } from 'react-router-dom';
 import { AuthContext } from '../../context/auth-context';
 import axios from 'axios';
-import Recipe from '../../components/recipes/Recipe';
+import Recipe from '../../components/Recipe';
 import Button from '@material-ui/core/Button';
 import '../../styles/recipes/styles.css';
 import { arrowFunctionExpression } from "@babel/types" // eslint-disable-line no-unused-vars 
@@ -10,15 +10,6 @@ import { arrowFunctionExpression } from "@babel/types" // eslint-disable-line no
 function getRecipeList(server_url) {
   return axios.get(`${server_url}/recipes`)
     .then(res => res.data.recipe_list)
-    .catch(err => {
-      console.log(err);
-    }
-  );
-};
-
-function getRecipe(server_url, id) {
-  return axios.get(`${server_url}/recipes/${id}`)
-    .then(res => res.data)
     .catch(err => {
       console.log(err);
     }

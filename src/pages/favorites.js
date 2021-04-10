@@ -1,5 +1,5 @@
 import React from "react"
-import ComingSoon from "../components/UIElements/ComingSoon"
+import ComingSoon from "../components/ComingSoon"
 
 function Favorites() {
     return(

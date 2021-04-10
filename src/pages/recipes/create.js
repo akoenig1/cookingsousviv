@@ -2,8 +2,8 @@ import React, { useContext, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { useHttpClient } from '../../hooks/useHttpClient';
 import { AuthContext } from '../../context/auth-context';
-import SelectPhoto from '../../components/recipes/SelectPhoto';
-import WriteRecipe from '../../components/recipes/WriteRecipe';
+import SelectPhoto from '../../components/SelectPhoto';
+import WriteRecipe from '../../components/WriteRecipe';
 import Button from '@material-ui/core/Button';
 
 const useFormProgress = () => {

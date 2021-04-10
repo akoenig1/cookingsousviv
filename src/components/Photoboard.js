@@ -1,6 +1,6 @@
 import React from "react"
 import Instafeed from "./Instafeed"
-import WelcomeMessage from "../components/UIElements/WelcomeMessage"    
+import WelcomeMessage from "./WelcomeMessage"    
 
 function Photoboard() {
     return(
