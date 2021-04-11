@@ -11,7 +11,7 @@ export const useHttpClient = () => {
       setIsLoading(true);
       const httpAbortCtrl = new AbortController();
       activeHttpRequests.current.push(httpAbortCtrl);
-      if(method === 'GET') { body = null; }
+      if(method === 'GET' || method === 'DELETE') { body = null; }
 
       try {
         const response = await fetch( url, {

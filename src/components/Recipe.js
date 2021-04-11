@@ -129,9 +129,16 @@ function Recipe(props) {
           decLikes={decLikes}
         /> }
       </div>
+      <div className='likes'>
+        {recipe.likesCount !== 0 && (
+          <span className='likes bold'>
+            {recipe.likesCount} {recipe.likesCount > 1 ? 'likes' : 'like'}
+          </span>
+        )}
+      </div>
       <div className='comments-container'>
         {recipe.comments.map((comment) => (
-          <Comment comment={comment} />
+          <Comment comment={comment} recipeId={recipe.id}/>
         ))}
       </div>
       <div>
