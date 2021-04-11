@@ -16,6 +16,7 @@ function Recipe(props) {
   const comment = useInput('');
   const guestAuthor = useInput('');
   const id = props.recipe[0].id;
+  const [updating, setUpdating] = useState(false);
   const [recipe, setRecipe] = useState({
     title: '',
     intro: '',
@@ -32,46 +33,61 @@ function Recipe(props) {
   const [likesState, setLikes] = useState(recipe.likesCount);
 
   useEffect(() => {   
-    getRecipe(server_url).then(recipePage => {
+    let mounted = true;
 
-    if (recipePage) {
-      setRecipe({...recipe,
-        title: props.recipe[0].title,
-        intro: props.recipe[0].intro,
-        ingredients: props.recipe[0].ingredients,
-        directions: props.recipe[0].directions,
-        tags: props.recipe[0].tags,
-        id: props.recipe[0].id,
-        instaPhoto: props.recipe[0].instaPhoto,
-        comments: recipePage.data.comments,
-        likes: recipePage.data.likes,
-        likesCount: recipePage.data.likesCount,
-        isLiked: recipePage.data.isLiked,
-        fetched: true
-      })
-    }
-  })
-  }, [])
-
-  function getRecipe(server_url) {
-    const header = {
-      'Content-Type': 'application/json'
-    };
-    if(auth.token) {
-      header.Authorization = 'Bearer ' + auth.token;
-    }
-
-    return sendRequest(
-        `${server_url}/recipes/${id}`, 
-        'GET',
-        header,
-      )
-      .then(res => res)
-      .catch(err => {
-        console.log(err);
+    function getRecipe(server_url) {
+      const header = {
+        'Content-Type': 'application/json'
+      };
+      if(auth.token) {
+        header.Authorization = 'Bearer ' + auth.token;
       }
-    );
-  };
+  
+      return sendRequest(
+          `${server_url}/recipes/${id}`, 
+          'GET',
+          header,
+        )
+        .then(res => res)
+        .catch(err => {
+          console.log(err);
+        }
+      );
+    };
+
+    if(recipe.fetched && !updating) {
+      return;
+    }
+
+    getRecipe(server_url)
+      .then(recipePage => {
+        if (recipePage && mounted) {
+          setRecipe({...recipe,
+            title: props.recipe[0].title,
+            intro: props.recipe[0].intro,
+            ingredients: props.recipe[0].ingredients,
+            directions: props.recipe[0].directions,
+            tags: props.recipe[0].tags,
+            id: props.recipe[0].id,
+            instaPhoto: props.recipe[0].instaPhoto,
+            comments: recipePage.data.comments,
+            likes: recipePage.data.likes,
+            likesCount: recipePage.data.likesCount,
+            isLiked: recipePage.data.isLiked,
+            fetched: true
+          })
+        }
+        return () => mounted = false;
+  })
+  }, [updating, recipe, server_url, props.recipe, auth.token, id, sendRequest])
+
+  useEffect(() => {
+    if(updating) {
+      setTimeout(() => {
+        setUpdating(false);
+      }, 500)
+    }
+  }, [updating])
 
   const incLikes = () => setLikes(likesState + 1);
   const decLikes = () => setLikes(likesState - 1);
@@ -99,8 +115,13 @@ function Recipe(props) {
       console.log(err)
     })
 
-    guestAuthor.value = '';
-    comment.value = '';
+    guestAuthor.setValue('');
+    comment.setValue('');
+    setUpdating(true);
+  }
+
+  function handleCommentDelete() {
+    setUpdating(true);
   }
 
   return (
@@ -137,8 +158,8 @@ function Recipe(props) {
         )}
       </div>
       <div className='comments-container'>
-        {recipe.comments.map((comment) => (
-          <Comment comment={comment} recipeId={recipe.id}/>
+        {recipe.comments.map((comment, i) => (
+          <Comment key={i} comment={comment} recipeId={recipe.id} onChange={handleCommentDelete} />
         ))}
       </div>
       <div>

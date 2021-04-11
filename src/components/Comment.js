@@ -3,7 +3,7 @@ import { useHttpClient } from '../hooks/useHttpClient';
 import { AuthContext } from '../context/auth-context';
 
 
-function Comment( {comment, recipeId} ) {
+function Comment( {comment, recipeId, onChange} ) {
   const auth = useContext(AuthContext);
   const { sendRequest } = useHttpClient(); 
   const server_url = (process.env.NODE_ENV === 'development')
@@ -25,6 +25,8 @@ function Comment( {comment, recipeId} ) {
     }).catch((err) => {
         console.log(err)
     });
+
+    onChange();
   }
   
   return (
