@@ -60,7 +60,7 @@ function App() {
       >
         <Navbar />
         <Auth></Auth>
-        <Routes/>
+        <Routes />
       </AuthContext.Provider>
     </div>
   );

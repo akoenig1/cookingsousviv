@@ -67,7 +67,6 @@ function Recipes({history}) {
         }
         <Switch>
           <Route exact path="/recipes/:id" render={(props) => ( <Recipe recipe={recipes.filter( recipe => recipe.url === `/recipes/${recipeId}` )} {...props} /> )} />
-          {/* <Route exact path="/recipes/:id" render={(props) => ( <Recipe recipe={getRecipe(server_url, "60459f6050d14d74f4f7f989")} {...props} /> )} /> */}
         </Switch>
         { auth.isAdmin && history.location.pathname==='/recipes' && (
           <Button 

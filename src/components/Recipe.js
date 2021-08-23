@@ -125,23 +125,36 @@ function Recipe(props) {
   }
 
   return (
-    <div className='recipe-card'>
-      <div className='recipe-card-top row'>
-        <div className='recipe-card-header col-lg-6'>
-            <h3 className='recipe-card-title'>{recipe.title}</h3>
+    <div className='recipe-page'>
+      <div className='recipe-card'>
+        <div className='recipe-card-header row'>
+          <h3 className='recipe-card-title'>{recipe.title}</h3>
+        </div>
+        <hr className='recipe-card-divider'></hr>
+        <div className='recipe-card-top row'>
+          <div className='recipe-card-sub-header col-lg-4'>
             <p className='recipe-card-intro'>{recipe.intro}</p>
-        </div>
-        <div className='recipe-card-image-container col-lg-6'>
+          </div>
+          <div className='recipe-card-image-container col-lg-8'>
             <img src={recipe.instaPhoto.media_url} alt="food" className="recipe-card-image"></img>
+          </div>
+        </div>
+        <hr className='recipe-card-divider'></hr>
+        <div className='recipe-card-middle row'>
+          <div className='recipe-card-ingredients col-lg-4'>
+            <h4>Ingredients</h4>
+            <p>{recipe.ingredients}</p>
+          </div>
+          <div className='recipe-card-directions col-lg-8'>
+            <h4>Preparation</h4>
+            <p>{recipe.directions}</p>
+          </div>
+        </div>
+        <div className='recipe-card-bottom row'>
+          <p id='recipe-card-tags'>{recipe.tags}</p>
         </div>
       </div>
-      <div className='recipe-card-middle row'>
-        <p className='recipe-card-ingredients col-lg-4'>{recipe.ingredients}</p>
-        <p className='recipe-card-directions col-lg-8'>{recipe.directions}</p>
-      </div>
-      <div className='recipe-card-bottom row'>
-        <p className='recipe-card-tags'>{recipe.tags}</p>
-      </div>
+
       <div className='recipe-actions'>
         {auth.isLoggedIn && <LikeRecipe 
           isLiked={recipe.isLiked}
@@ -198,7 +211,6 @@ function Recipe(props) {
           Delete 
         </Button>
       </div>}
-   
     </div>
   )
 }

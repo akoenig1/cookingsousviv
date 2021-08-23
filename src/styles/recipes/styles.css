@@ -1,100 +1,139 @@
 @font-face {
-    font-family: Montserrat;
-    src: url(../fonts/Montserrat-Regular.ttf);
+  font-family: Montserrat;
+  src: url(../fonts/Montserrat-Regular.ttf);
 }
 
 a {
-    color: rgb(117, 116, 116);
+  color: rgb(117, 116, 116);
 }
 
 a:hover {
-    color: black;
+  color: black;
 }
 
 h1 {
-    display: flex;
-    justify-content: center;
+  display: flex;
+  justify-content: center;
 }
 
 .recipe-list {
-    width: 50%;
-    margin: 30px auto;
+  width: 60%;
+  margin: 30px auto;
 }
 
 .recipe-image-container {
-    margin-right: 20px;
-    margin-left: 10px;
-    margin-top: 10px;
-    margin-bottom: 10px;
-    max-width: 100%;
-    width: 25%;
-    display: inline-block;
-    position: relative;
+  margin-right: 20px;
+  margin-left: 10px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  max-width: 100%;
+  width: 25%;
+  display: inline-block;
+  position: relative;
 }
 
 .recipe-image-dummy {
-    margin-top: 100%;
+  margin-top: 100%;
 }
 
 .recipe-image {
-    /* position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    background-color: black; */
-    width: 100%;
-    object-fit: cover;
+  /* position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: black; */
+  width: 100%;
+  object-fit: cover;
 }
 
 .list-group-item {
-    display: flex;
-    margin-top: 20px;
-    margin-bottom: 20px;
+  display: flex;
+  margin-top: 20px;
+  margin-bottom: 20px;
 }
 
 .recipe-title {
-    color: rgb(117, 116, 116);
-    margin-right: 10px;
-    margin-left: 10px;
-    margin-top: 10px;
-    margin-bottom: 10px;
-    font-size: 26px;
-    font-weight: bold;
-    text-decoration: underline;
-    display: block;
+  color: rgb(117, 116, 116);
+  margin-right: 10px;
+  margin-left: 10px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  font-size: 26px;
+  font-weight: bold;
+  text-decoration: underline;
+  display: block;
 }
 
 .recipe-intro {
-    color: rgb(117, 116, 116);
-    margin-right: 10px;
-    margin-left: 10px;
-    margin-top: 10px;
-    margin-bottom: 10px;
-    display: block;
-    text-decoration: none;
-    font-size: 18px;
+  color: rgb(117, 116, 116);
+  margin-right: 10px;
+  margin-left: 10px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  display: block;
+  text-decoration: none;
+  font-size: 18px;
 }
 
 /* RECIPE CARD */
 
 .recipe-card {
-    text-align: left;
-    background-color: #ddd;
+  text-align: left;
+  background-color: #ddd;
 } 
 
+.recipe-card .row {
+  margin-left: 30px;
+  margin-right: 30px;
+}
+
+.recipe-card-title {
+  font-size: 48px;
+  background-color: transparent;
+}
+
+.recipe-card-divider hr {
+  border-style: solid;
+  border-color: rgb(66, 66, 66);
+  border-width: 1px;
+}
+
+.recipe-card-sub-header {
+  margin-top: 10px;
+  padding: 0;
+}
+
+.recipe-card p {
+  color: black;
+  font-size: 1.5em;
+  font-weight: 400;
+  line-height: 1.4;
+}
+
+.recipe-card h4 {
+  font-size: 2em;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
 .recipe-card-image-container {
-    margin-right: 20px;
-    margin-left: 10px;
-    margin-top: 10px;
-    margin-bottom: 10px;
-    max-width: 100%;
-    width: 25%;
-    display: inline-block;
-    position: relative;
+  margin-left: 10px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  padding: 0;
+  max-width: 100%;
+  width: 60%;
+  display: inline-block;
+  position: relative;
 }
 
 .recipe-card-image {
-    width: 100%;
-    object-fit: cover;
+  height: 400px;
+  width: 100%;
+  object-fit: cover;
+}
+
+#recipe-card-tags {
+  font-weight: 200;
 }
