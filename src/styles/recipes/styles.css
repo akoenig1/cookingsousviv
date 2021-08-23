@@ -93,10 +93,10 @@ h1 {
   background-color: transparent;
 }
 
-.recipe-card-divider hr {
+.recipe-card-divider {
   border-style: solid;
-  border-color: rgb(66, 66, 66);
   border-width: 1px;
+  
 }
 
 .recipe-card-sub-header {
