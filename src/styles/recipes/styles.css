@@ -137,3 +137,62 @@ h1 {
 #recipe-card-tags {
   font-weight: 200;
 }
+
+.recipe-interactions {
+  margin-top: 15px;
+  margin-left: 10px;
+  font-size: 1.25em;
+}
+
+.likes-container {
+  margin-bottom: 20px;
+}
+
+.like-button-container {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.likes-count-container {
+  display: inline-block;
+  margin-left: 8px;
+  vertical-align: middle;
+}
+
+.likes {
+  font-size: 1.5rem;
+}
+
+.comments-container h4 {
+  font-size: 1.5em;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.comments-container ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.author-name {
+  font-weight: bold;
+}
+
+.comment-form {
+  margin-top: 10px;
+  padding: 20px;
+  background-color: #fff;
+  border: solid 1px rgb(63, 63, 63);
+}
+
+.comment-input {
+  width: 100%;
+  background-color: #fafafa;
+  margin-bottom: 10px;
+}
+
+#comment-submit {
+  height: 32px;
+  float: right;
+  text-transform: uppercase;
+}

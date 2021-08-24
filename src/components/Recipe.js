@@ -155,45 +155,59 @@ function Recipe(props) {
         </div>
       </div>
 
-      <div className='recipe-actions'>
-        {auth.isLoggedIn && <LikeRecipe 
-          isLiked={recipe.isLiked}
-          recipeId={recipe.id}
-          incLikes={incLikes}
-          decLikes={decLikes}
-        /> }
-      </div>
-      <div className='likes'>
-        {recipe.likesCount !== 0 && (
-          <span className='likes bold'>
-            {recipe.likesCount} {recipe.likesCount > 1 ? 'likes' : 'like'}
-          </span>
-        )}
-      </div>
-      <div className='comments-container'>
-        {recipe.comments.map((comment, i) => (
-          <Comment key={i} comment={comment} recipeId={recipe.id} onChange={handleCommentDelete} />
-        ))}
-      </div>
-      <div>
-        <form>
-          {!auth.isLoggedIn && 
-          <input
-            name='guestAuthor'
-            placeholder='Enter your name...'
-            value={guestAuthor.value}
-            onChange={guestAuthor.onChange}
-          />
-          }
-          <textarea
-            name='content'
-            rows='5'
-            placeholder='Enter comment...'
-            value={comment.value}
-            onChange={comment.onChange}
-          />
-          <button onClick={handleCommentSubmit}></button>
-        </form>
+      <div className='recipe-interactions'>
+        <div className='likes-container'> 
+          <div className='like-button-container'>
+            {auth.isLoggedIn && <LikeRecipe 
+              isLiked={recipe.isLiked}
+              recipeId={recipe.id}
+              incLikes={incLikes}
+              decLikes={decLikes}
+            /> }
+          </div>
+          <div className='likes-count-container'>
+            {recipe.likesCount !== 0 && (
+              <span className='likes bold'>
+                {recipe.likesCount} {recipe.likesCount > 1 ? 'likes' : 'like'}
+              </span>
+            )}
+          </div>
+        </div>
+        <div className='row'>
+          <div className='comments-container col-lg-8'>
+            <h4>Comments</h4>
+            <ul>
+              {recipe.comments.map((comment, i) => (
+                <div className='comment'>
+                  <Comment key={i} comment={comment} recipeId={recipe.id} onChange={handleCommentDelete} />
+                  <hr></hr>
+                </div>
+              ))}
+            </ul>
+          </div>
+        </div>
+        <div className='row'>
+          <form className='comment-form col-lg-8'>
+            {!auth.isLoggedIn && 
+            <input
+              name='guestAuthor'
+              placeholder='Enter your name (required)'
+              value={guestAuthor.value}
+              onChange={guestAuthor.onChange}
+              className='comment-input'
+            />
+            }
+            <textarea
+              name='content'
+              rows='5'
+              placeholder='Leave a comment or a tip for this recipe.'
+              value={comment.value}
+              onChange={comment.onChange}
+              className='comment-input'
+            />
+            <button id='comment-submit' onClick={handleCommentSubmit}>Submit</button>
+          </form>
+        </div>
       </div>
 
       {auth.isAdmin && <div>

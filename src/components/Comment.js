@@ -34,7 +34,7 @@ function Comment( {comment, recipeId, onChange} ) {
       key={comment._id}
     >
       <span>
-        {comment.userAuthor ? comment.userAuthor.name : comment.guestAuthor}
+        <p className='author-name'> {comment.userAuthor ? comment.userAuthor.name : comment.guestAuthor} </p>
       </span>
       {comment.comment}
       {comment.isCommentMine && 
