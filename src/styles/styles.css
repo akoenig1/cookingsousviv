@@ -11,6 +11,12 @@ body {
     src: url(./fonts/Montserrat-Regular.ttf);
 }
 
+.auth-button-container {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+}
+
 .navbar {
     margin-bottom: 40px;
     border-radius: 0;
