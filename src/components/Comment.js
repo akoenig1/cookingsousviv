@@ -1,6 +1,7 @@
 import React, { useContext } from 'react';
 import { useHttpClient } from '../hooks/useHttpClient';
 import { AuthContext } from '../context/auth-context';
+import moment from 'moment';
 
 
 function Comment( {comment, recipeId, onChange} ) {
@@ -9,6 +10,7 @@ function Comment( {comment, recipeId, onChange} ) {
   const server_url = (process.env.NODE_ENV === 'development')
   ? 'http://localhost:5000'
   : 'https://cookingsousviv-backend.herokuapp.com';
+  const relativeDate = moment(comment.createdAt).fromNow();
 
   function handleDelete(event) {
     event.preventDefault();
@@ -34,7 +36,7 @@ function Comment( {comment, recipeId, onChange} ) {
       key={comment._id}
     >
       <span>
-        <p className='author-name'> {comment.userAuthor ? comment.userAuthor.name : comment.guestAuthor} </p>
+        <p className='author-name'> {comment.userAuthor ? comment.userAuthor.name : comment.guestAuthor} <span class='comment-date'> | {relativeDate} </span> </p>
       </span>
       {comment.comment}
       {comment.isCommentMine && 

@@ -17,6 +17,7 @@
     "is-promise": "^4.0.0",
     "jquery": "^3.5.1",
     "jQuery": "^1.7.4",
+    "moment": "^2.29.1",
     "query-string": "^6.13.8",
     "react": "^16.14.0",
     "react-dom": "^16.14.0",
