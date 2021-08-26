@@ -1,6 +1,7 @@
 import React, { useState, useCallback, useEffect } from 'react';
 import Navbar from './components/Navbar';
 import Routes from './Routes';
+import Footer from './components/Footer';
 import { AuthContext } from './context/auth-context';
 //import queryString from "query-string"
 import './styles/styles.css';
@@ -59,6 +60,7 @@ function App() {
       >
         <Navbar />
         <Routes />
+        <Footer />
       </AuthContext.Provider>
     </div>
   );

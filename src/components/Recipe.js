@@ -150,6 +150,7 @@ function Recipe(props) {
             <p>{recipe.directions}</p>
           </div>
         </div>
+        <hr className='recipe-card-divider'></hr>
         <div className='recipe-card-bottom row'>
           <p id='recipe-card-tags'>{recipe.tags}</p>
         </div>
