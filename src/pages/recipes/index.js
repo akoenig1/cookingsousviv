@@ -3,6 +3,7 @@ import { Link, Route, Switch, matchPath, } from 'react-router-dom';
 import { AuthContext } from '../../context/auth-context';
 import axios from 'axios';
 import Recipe from '../../components/Recipe';
+import ScrollToTop from '../../components/ScrollToTop';
 import Button from '@material-ui/core/Button';
 import '../../styles/recipes/styles.css';
 import { arrowFunctionExpression } from "@babel/types" // eslint-disable-line no-unused-vars 
@@ -65,9 +66,11 @@ function Recipes({history}) {
             </li> 
           ) : ''
         }
-        <Switch>
-          <Route exact path="/recipes/:id" render={(props) => ( <Recipe recipe={recipes.filter( recipe => recipe.url === `/recipes/${recipeId}` )} {...props} /> )} />
-        </Switch>
+        <ScrollToTop>
+          <Switch>
+            <Route exact path="/recipes/:id" render={(props) => ( <Recipe recipe={recipes.filter( recipe => recipe.url === `/recipes/${recipeId}` )} {...props} /> )} />
+          </Switch>
+        </ScrollToTop>
         { auth.isAdmin && history.location.pathname==='/recipes' && (
           <Button 
             variant='outlined' 
