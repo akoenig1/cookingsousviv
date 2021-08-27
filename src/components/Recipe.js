@@ -31,6 +31,7 @@ function Recipe(props) {
     fetched: false,
   });
   const [likesState, setLikes] = useState(recipe.likesCount);
+  const [commentsCountState, setCommentsCount] = useState(recipe.comments.length);
 
   useEffect(() => {   
     let mounted = true;
@@ -91,6 +92,8 @@ function Recipe(props) {
 
   const incLikes = () => setLikes(likesState + 1);
   const decLikes = () => setLikes(likesState - 1);
+  const incCommentsCount = () => setCommentsCount(commentsCountState + 1);
+  const decCommentsCount = () => setCommentsCount(commentsCountState - 1);
 
   function handleCommentSubmit(event) {
     event.preventDefault();
@@ -118,10 +121,12 @@ function Recipe(props) {
     guestAuthor.setValue('');
     comment.setValue('');
     setUpdating(true);
+    incCommentsCount();
   }
 
   function handleCommentDelete() {
     setUpdating(true);
+    decCommentsCount();
   }
 
   return (
