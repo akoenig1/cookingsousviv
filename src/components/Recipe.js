@@ -176,7 +176,7 @@ function Recipe(props) {
         </div>
         <div className='row'>
           <div className='comments-container col-lg-8'>
-            <h4>Comments</h4>
+            <h4>Comments <span class='comment-count'>{recipe.comments.length}</span></h4>
             <ul>
               {recipe.comments.map((comment, i) => (
                 <div className='comment'>
