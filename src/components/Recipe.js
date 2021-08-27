@@ -203,6 +203,9 @@ function Recipe(props) {
               className='comment-input'
             />
             }
+            {auth.isLoggedIn &&
+            <p className='author-name'>Commenting as {auth.userName}</p>
+            }
             <textarea
               name='content'
               rows='5'

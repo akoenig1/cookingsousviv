@@ -18,7 +18,7 @@ const Auth = () => {
       url: `${server_url}/auth/google`,
       data: {tokenId: res.tokenId}
     }).then(res => {
-      auth.login(res.data.user._id, res.data.token, res.data.user.admin)
+      auth.login(res.data.user._id, res.data.user.name, res.data.token, res.data.user.admin)
     })
   }
 

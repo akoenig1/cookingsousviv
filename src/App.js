@@ -8,13 +8,15 @@ import './styles/styles.css';
 
 function App() {
   const [userId, setUserId] = useState(false);
+  const [userName, setUserName] = useState(false);
   const [isAdmin, setIsAdmin] = useState(false);
   //const [error, setError] = useState(null)
   const [token, setToken] = useState(false);
 
-  const login = useCallback((uid, token, admin, expirationDate) => {
+  const login = useCallback((uid, userName, token, admin, expirationDate) => {
     setToken(token);
     setUserId(uid);
+    setUserName(userName);
     setIsAdmin(admin);
     const tokenExpirationDate = expirationDate || new Date(new Date().getTime() + 1000 * 60 * 60 * 24);
     localStorage.setItem(
@@ -22,6 +24,7 @@ function App() {
       JSON.stringify({ 
         token: token, 
         userId: uid, 
+        userName: userName,
         admin: admin,
         expiration: tokenExpirationDate.toISOString()
       })
@@ -31,6 +34,7 @@ function App() {
   const logout = useCallback(() => {
     setToken(null);
     setUserId(null);
+    setUserName(null);
     setIsAdmin(null);
     localStorage.removeItem('userData');
   }, []);
@@ -42,7 +46,7 @@ function App() {
       storedData.token && 
       new Date(storedData.expiration) > new Date()
     ) {
-      login(storedData.userId , storedData.token, storedData.admin, new Date(storedData.expiration))
+      login(storedData.userId, storedData.userName, storedData.token, storedData.admin, new Date(storedData.expiration))
     }
   }, [login])
 
@@ -53,6 +57,7 @@ function App() {
           isLoggedIn: !!token,
           token: token,
           userId: userId,
+          userName: userName,
           isAdmin: isAdmin,
           login: login,
           logout: logout,
