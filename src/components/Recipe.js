@@ -181,11 +181,11 @@ function Recipe(props) {
         </div>
         <div className='row'>
           <div className='comments-container col-lg-8'>
-            <h4>Comments <span class='comment-count'>{recipe.comments.length}</span></h4>
+            <h4>Comments <span className='comment-count'>{recipe.comments.length}</span></h4>
             <ul>
               {recipe.comments.map((comment, i) => (
-                <div className='comment'>
-                  <Comment key={i} comment={comment} recipeId={recipe.id} onChange={handleCommentDelete} />
+                <div className='comment' key={i}>
+                  <Comment comment={comment} recipeId={recipe.id} onChange={handleCommentDelete} />
                   <hr></hr>
                 </div>
               ))}
