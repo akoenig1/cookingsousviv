@@ -184,12 +184,43 @@ h1 {
   padding: 0;
 }
 
+.comment {
+  position: relative;
+}
+
 .author-name {
   font-weight: bold;
 }
 
 .comment-date {
   font-weight: 200;
+}
+
+.author-avatar {
+  left: 0;
+  position: absolute;
+  top: 0;
+  background-color: rgba(95, 158, 160, 0.7);
+  height: 40px;
+  width: 40px;
+  border-radius: 60px;
+  text-align: center;
+}
+
+.author-init {
+  font-size: 24px;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  color:rgb(80, 80, 80);
+  position: absolute;
+  top: 50%;
+  right: 0;
+  left: 0;
+  transform: translateY(-50%);
+}
+
+.comment-text {
+  display: inline-block;
+  padding-left: 52px;
 }
 
 .comment-form {

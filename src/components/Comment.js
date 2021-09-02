@@ -11,6 +11,7 @@ function Comment( {comment, recipeId, onChange} ) {
   ? 'http://localhost:5000'
   : 'https://cookingsousviv-backend.herokuapp.com';
   const relativeDate = moment(comment.createdAt).fromNow();
+  const authorName = comment.userAuthor ? comment.userAuthor.name : comment.guestAuthor;
 
   function handleDelete(event) {
     event.preventDefault();
@@ -35,15 +36,20 @@ function Comment( {comment, recipeId, onChange} ) {
     <li 
       key={comment._id}
     >
-      <span>
-        <p className='author-name'> {comment.userAuthor ? comment.userAuthor.name : comment.guestAuthor} <span className='comment-date'> | {relativeDate} </span> </p>
-      </span>
-      {comment.comment}
-      {comment.isCommentMine && 
-        <div>
-          <button onClick={handleDelete}>Delete</button>
-        </div>
-      }
+      <div className='author-avatar'>
+        <span className='author-init'>{authorName[0]}</span>
+      </div>
+      <div className='comment-text'>
+        <span>
+          <p className='author-name'> {authorName} <span className='comment-date'> | {relativeDate} </span> </p>
+        </span>
+        {comment.comment}
+        {comment.isCommentMine && 
+          <div>
+            <button onClick={handleDelete}>Delete</button>
+          </div>
+        }
+      </div>
     </li>
   )
 }
